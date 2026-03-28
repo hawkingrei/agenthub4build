@@ -1,0 +1,8 @@
+node_modules
+dist
+.git
+.npm-cache
+.slidev
+.vite
+.vercel-home
+agenthub-team-tidb-shiro.pptx
