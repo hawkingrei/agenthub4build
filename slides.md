@@ -191,20 +191,20 @@ routerMode: hash
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.58"></div>
   <div class="eyebrow">Harness 原则</div>
-  <h1 class="!mt-3 !mb-6">用 TiDB 的例子看 Harness Engineering 的五条原则</h1>
+  <h1 class="!mt-3 !mb-6">把 Harness 原则映射到 TiDB 场景</h1>
 
   <div class="grid grid-cols-2 gap-5">
     <div class="panel p-5">
       <div class="mini-title">1. 设计环境，而非编写代码</div>
       <p class="muted mt-2">
-        当 optimizer agent 卡住时，不是继续堆 prompt，而是补 skill、plan replayer、statistics dump、repro harness、remote node 这类能力。
+        当 optimizer agent 卡住时，不是继续堆 prompt，而是补 plan replayer、statistics dump、repro harness、remote node 这类环境能力。
       </p>
     </div>
     <div class="panel p-5">
       <div class="mini-title">2. 机械化地执行约束</div>
       <p class="muted mt-2">
-        对 TiDB 来说，更关键的是像 <code>expression / statistics → planner → executor → session / server</code> 这样的依赖方向。
-        这些约束不能只写在文档里；要靠 Linter、结构测试和 CI 强制执行，而且报错要直接教 agent 怎么修。
+        在 TiDB 这种大仓库里，关键不是写出一条漂亮分层图，而是把“哪些代码不该互相依赖”“哪些测试必须补”
+        这类约束机械化下来；如果能做到，报错最好还能直接教 agent 怎么修。
       </p>
     </div>
     <div class="panel p-5">
@@ -216,7 +216,7 @@ routerMode: hash
     <div class="panel p-5">
       <div class="mini-title">4. 把可观测性接给 agent</div>
       <p class="muted mt-2">
-        <code>EXPLAIN ANALYZE</code>、optimizer trace、statement summary、慢日志、profiler、CI logs 都应该可被 agent 查询，这样 plan diff 和性能回退才可度量。
+        <code>EXPLAIN ANALYZE</code>、optimizer trace、statement summary、慢日志、profiler、CI logs 都应该可被 agent 查询，这样 plan diff、性能回退和 flaky case 才可度量。
       </p>
     </div>
   </div>
@@ -224,7 +224,7 @@ routerMode: hash
   <div class="panel p-5 mt-5">
     <div class="mini-title">5. 对抗熵</div>
     <p class="muted mt-2">
-      AI 生成的 notes、tests、SQL repro 和 fuzz outputs 不能直接堆积；必须经过 lint、格式化、去重、case replay 和 background cleanup，才能留下高质量制品。
+      AI 生成的 notes、tests、SQL repro 和 fuzz outputs 不能直接堆积；它们要么被清理掉，要么被最小化并升级成稳定的 regression case。
     </p>
   </div>
 
