@@ -144,6 +144,101 @@ routerMode: hash
 ---
 
 <div class="slide-shell">
+  <div class="aurora" style="opacity: 0.6"></div>
+  <div class="eyebrow">Harness</div>
+  <h1 class="!mt-3 !mb-6">把 AgentHub 放进 Harness Engineering 框架里</h1>
+
+  <div class="grid grid-cols-2 gap-5">
+    <div class="panel p-5">
+      <div class="mini-title">Context Architecture</div>
+      <p class="muted mt-2">
+        Agent 只拿当前 Task 真正需要的上下文。在 TiDB optimizer 场景里，这意味着只暴露相关 planner 代码、
+        测试、文档和 repro artifacts，而不是整仓库一起塞进 prompt。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">Agent Specialization</div>
+      <p class="muted mt-2">
+        受限工具、明确职责的专门 agent，优于拥有全部权限的通用 agent。Leader、Worker、TiDB domain skills
+        和 remote agent node 一起形成这层 specialization。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">Persistent Memory</div>
+      <p class="muted mt-2">
+        进度持久化在文件系统而不是上下文窗口里。<code>.cache/context</code> 负责 runtime continuity，
+        <code>.agenthubmemory</code> 负责 durable notes，新会话从制品重建上下文。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">Structured Execution</div>
+      <p class="muted mt-2">
+        把思考、执行和验证拆开。Task、Trigger、CI、Linter 和 human review 共同保证执行沿着可验证的计划推进。
+      </p>
+    </div>
+  </div>
+
+  <div class="panel panel-strong p-5 mt-6">
+    <div class="mini-title">核心判断</div>
+    <p class="mt-2">
+      AgentHub 不是一个“会写代码的 agent”，而是把上下文、专长、记忆和执行结构化之后形成的工程 harness。
+    </p>
+  </div>
+</div>
+
+---
+
+<div class="slide-shell">
+  <div class="aurora" style="opacity: 0.58"></div>
+  <div class="eyebrow">Harness 原则</div>
+  <h1 class="!mt-3 !mb-6">用 TiDB 的例子看 Harness Engineering 的五条原则</h1>
+
+  <div class="grid grid-cols-2 gap-5">
+    <div class="panel p-5">
+      <div class="mini-title">1. 设计环境，而非编写代码</div>
+      <p class="muted mt-2">
+        当 optimizer agent 卡住时，不是继续堆 prompt，而是补 skill、plan replayer、statistics dump、repro harness、remote node 这类能力。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">2. 机械化地执行约束</div>
+      <p class="muted mt-2">
+        对 TiDB 来说，更关键的是像 <code>expression / statistics → planner → executor → session / server</code> 这样的依赖方向。
+        这些约束不能只写在文档里；要靠 Linter、结构测试和 CI 强制执行，而且报错要直接教 agent 怎么修。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">3. Repo 是唯一事实源</div>
+      <p class="muted mt-2">
+        skills、回归测试、minimized repro、plan replayer、调试笔记都放进仓库；只存在于 Slack 或 Docs 的知识对 agent 等于不存在。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">4. 把可观测性接给 agent</div>
+      <p class="muted mt-2">
+        <code>EXPLAIN ANALYZE</code>、optimizer trace、statement summary、慢日志、profiler、CI logs 都应该可被 agent 查询，这样 plan diff 和性能回退才可度量。
+      </p>
+    </div>
+  </div>
+
+  <div class="panel p-5 mt-5">
+    <div class="mini-title">5. 对抗熵</div>
+    <p class="muted mt-2">
+      AI 生成的 notes、tests、SQL repro 和 fuzz outputs 不能直接堆积；必须经过 lint、格式化、去重、case replay 和 background cleanup，才能留下高质量制品。
+    </p>
+  </div>
+
+  <div class="panel panel-strong p-5 mt-6">
+    <div class="mini-title">为什么这很重要</div>
+    <p class="mt-2">
+      对 TiDB 这种大仓库来说，真正决定 Agent 上限的，不是模型会不会写代码，而是环境是否能持续、机械化地把正确行为推到它面前。
+    </p>
+  </div>
+</div>
+
+---
+
+<div class="slide-shell">
   <div class="aurora" style="opacity: 0.56"></div>
   <div class="eyebrow">架构</div>
   <h1 class="!mt-3 !mb-6">Actor system 是协作底座</h1>
@@ -673,6 +768,52 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
     <div class="mini-title">工程效果</div>
     <p class="mt-2">
       Shiro 把 fuzzing 从 input diversity 推进到 plan diversity 加 join truth，这更接近 optimizer bug 真正藏身的地方。
+    </p>
+  </div>
+</div>
+
+---
+
+<div class="slide-shell">
+  <div class="aurora" style="opacity: 0.58"></div>
+  <div class="eyebrow">CI</div>
+  <h1 class="!mt-3 !mb-6">Fuzz 进了 CI，才会从工具变成基础设施</h1>
+
+  <div class="grid grid-cols-3 gap-5">
+    <div class="panel p-5">
+      <div class="mini-title">PR checks</div>
+      <p class="muted mt-2">
+        先跑足够快、足够确定的检查，例如相关单测、planner regression、已有 repro case replay。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">Scheduled fuzz</div>
+      <p class="muted mt-2">
+        把更重的 fuzz、differential check 和长时间 guided exploration 放进定时 CI 或专门 lane。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">Failure promotion</div>
+      <p class="muted mt-2">
+        新发现的问题不能停留在原始 fuzz output；要被最小化、可回放，并提升成仓库里的稳定 regression case。
+      </p>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-3 mt-6 text-sm">
+    <div class="flow-pill">commit</div>
+    <div class="flow-pill">CI checks</div>
+    <div class="flow-pill">scheduled fuzz</div>
+    <div class="flow-pill">capture failure</div>
+    <div class="flow-pill">minimize</div>
+    <div class="flow-pill">replay in CI</div>
+  </div>
+
+  <div class="panel panel-strong p-5 mt-6">
+    <div class="mini-title">TiDB 里的价值</div>
+    <p class="mt-2">
+      对 optimizer 来说，真正重要的不是“跑过一次 fuzz”，而是把 fuzz 发现的问题持续接回 CI，
+      让同类回归以后再也进不来。
     </p>
   </div>
 </div>
