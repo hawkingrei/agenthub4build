@@ -265,7 +265,6 @@ routerMode: hash
         <li>Trigger 负责等待与 context switch。</li>
       </ul>
     </div>
-
     <div class="panel p-5">
       <div class="mini-title">2. Delivery plane</div>
       <p class="muted mt-2">
@@ -277,7 +276,6 @@ routerMode: hash
         <li>channel event 负责提醒，mailbox ack 才是完成信号。</li>
       </ul>
     </div>
-
     <div class="panel p-5">
       <div class="mini-title">3. Execution plane</div>
       <p class="muted mt-2">
