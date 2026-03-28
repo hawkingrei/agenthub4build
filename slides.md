@@ -105,7 +105,7 @@ routerMode: hash
       <ul class="mt-3 compact-list">
         <li><code>Agent Team</code>：把复杂研发任务拆成 Leader / Worker 协作，而不是让单个 agent 硬扛。</li>
         <li><code>Actor system</code>：用 mailbox、task 和 run 把协作变成可回放、可审计的协议。</li>
-        <li><code>Remote agent node</code>：把 repo checkout、build 和 test 分散到多台机器上，支撑大仓库并发开发。</li>
+        <li><code>Remote agent node</code>：把 repo checkout、build 和 test 分散到多台机器上，专门支撑 TiDB 这类大仓库的并发开发与并发测试。</li>
       </ul>
     </div>
     <div class="panel p-6">
@@ -160,7 +160,7 @@ routerMode: hash
       <div class="mini-title">Agent Specialization</div>
       <p class="muted mt-2">
         受限工具、明确职责的专门 agent，优于拥有全部权限的通用 agent。Leader、Worker、TiDB domain skills
-        和 remote agent node 一起形成这层 specialization。
+        和 remote agent node 一起形成这层 specialization，尤其适合拆开 TiDB 的并发测试压力。
       </p>
     </div>
     <div class="panel p-5">
@@ -284,7 +284,7 @@ routerMode: hash
       <ul class="mt-4 compact-list">
         <li>skills 决定角色和领域行为。</li>
         <li>memory 负责连续性与经验沉淀。</li>
-        <li>remote nodes 支撑 TiDB 大仓库并发执行。</li>
+        <li>remote nodes 专门用来承接 TiDB 大仓库的并发测试和重型执行。</li>
       </ul>
     </div>
   </div>
@@ -415,7 +415,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
       <ul class="mt-3 compact-list">
         <li>围绕分配到的 Task 专注 execution，而不是反复打断人。</li>
         <li>生产 evidence、更新 status，并及时暴露 blocker。</li>
-        <li>需要时可以运行在本地，也可以运行在 remote agent node 上。</li>
+        <li>需要时可以运行在本地，也可以运行在 remote agent node 上，把 TiDB 的并发测试拆到多台机器。</li>
       </ul>
     </div>
 
