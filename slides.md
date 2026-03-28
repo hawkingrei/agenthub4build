@@ -250,7 +250,7 @@ routerMode: hash
     </div>
     <div class="panel p-4">
       <div class="mini-title">Task</div>
-      <p class="muted mt-2">Task 是 canonical execution unit；Run 更多承担 replay 和调试 telemetry。</p>
+      <p class="muted mt-2">Task 是 canonical execution unit，负责承载明确的 owner、status 和 evidence。</p>
     </div>
     <div class="panel p-4">
       <div class="mini-title">Actor Mailbox</div>
@@ -262,11 +262,10 @@ routerMode: hash
     </div>
   </div>
 
-  <div class="grid grid-cols-7 gap-3 mt-5 text-sm">
+  <div class="grid grid-cols-6 gap-3 mt-5 text-sm">
     <div class="flow-pill">Human</div>
     <div class="flow-pill">Leader</div>
     <div class="flow-pill">Task</div>
-    <div class="flow-pill">Run</div>
     <div class="flow-pill">Mailbox</div>
     <div class="flow-pill">Worker</div>
     <div class="flow-pill">Review</div>
