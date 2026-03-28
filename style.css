@@ -44,16 +44,7 @@
 }
 
 .aurora {
-  position: absolute;
-  inset: -10% -6% auto -8%;
-  height: 120%;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 12% 20%, rgba(251, 191, 36, 0.34), transparent 34%),
-    radial-gradient(circle at 82% 14%, rgba(249, 115, 22, 0.28), transparent 28%),
-    radial-gradient(circle at 65% 72%, rgba(244, 114, 182, 0.16), transparent 30%),
-    linear-gradient(135deg, #fff8f0 0%, #f6f1e9 42%, #efe4d4 100%);
-  filter: saturate(110%);
+  display: none;
 }
 
 .eyebrow {
@@ -131,10 +122,7 @@
 }
 
 .soft-grid {
-  background-image:
-    linear-gradient(rgba(120, 53, 15, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(120, 53, 15, 0.04) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image: none;
 }
 
 .slidev-layout code {
