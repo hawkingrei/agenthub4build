@@ -510,7 +510,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
   <div class="eyebrow">Memory</div>
   <h1 class="!mt-3 !mb-6">Memory management 要按生命周期拆分，而不是按方便程度拆分</h1>
 
-  <div class="grid grid-cols-2 gap-6">
+  <div class="grid grid-cols-3 gap-5">
     <div class="panel p-6">
       <div class="mini-title">Runtime continuity</div>
       <p class="muted mt-2">易失、run-scoped，并针对恢复和压缩优化。</p>
@@ -532,13 +532,24 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         <li><code>note/</code> 保存可复用的 heuristics 和经验。</li>
       </ul>
     </div>
+
+    <div class="panel p-6">
+      <div class="mini-title">Shared cloud memory</div>
+      <p class="muted mt-2"><code>mem9</code> 适合跨机器、跨 agent 的共享持久记忆。</p>
+      <ul class="mt-4 compact-list">
+        <li>memory 被放进独立 server，而不是绑在某一台开发机上。</li>
+        <li>多个 agent 指向同一个 tenant 时，可以共享同一个 memory pool。</li>
+        <li>agent plugin 可以保持 stateless，而底层 memory service 由 TiDB-backed store 支撑。</li>
+      </ul>
+    </div>
   </div>
 
   <div class="panel panel-strong p-5 mt-6">
     <div class="mini-title">设计规则</div>
     <p class="mt-2">
-      跨成员共享必须经过 mailbox 或 channel pointer，不能直接写对方文件系统。
-      这样 ownership 才是显式的，也能避免静默的 context 污染。
+      本地 <code>.agenthubmemory</code> 适合保存 worker 的项目内记忆；像 <code>mem9</code> 这样的 shared memory
+      更适合跨机器、跨 agent 的长期共享。跨成员共享仍然应该经过 mailbox、pointer 或受控 memory service，
+      不能直接写对方文件系统。
     </p>
   </div>
 </div>
