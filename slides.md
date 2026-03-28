@@ -96,47 +96,46 @@ routerMode: hash
 
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.62"></div>
-  <div class="eyebrow">为什么需要 Team</div>
-  <h1 class="!mt-3 !mb-6">AgentHub 不是“更聪明的 agent”，而是一套有纪律的 Team</h1>
+  <div class="eyebrow">AgentHub</div>
+  <h1 class="!mt-3 !mb-6">AgentHub 的特色，来自三次演化</h1>
 
   <div class="grid grid-cols-2 gap-6">
     <div class="panel p-6">
-      <div class="mini-title">没有 Team model 时</div>
+      <div class="mini-title">今天的三个特色</div>
       <ul class="mt-3 compact-list">
-        <li>一个 prompt 必须同时承载 planning、execution、review 和 reporting。</li>
-        <li>context 很快会被日志、半成品决策和重复状态更新塞满。</li>
-        <li>人的协作意图和执行控制会被混在一起。</li>
-        <li>失败后的恢复很难，因为 ownership 是隐式的。</li>
+        <li><code>Agent Team</code>：把复杂研发任务拆成 Leader / Worker 协作，而不是让单个 agent 硬扛。</li>
+        <li><code>Actor system</code>：用 mailbox、task 和 run 把协作变成可回放、可审计的协议。</li>
+        <li><code>Remote agent node</code>：把 repo checkout、build 和 test 分散到多台机器上，支撑大仓库并发开发。</li>
       </ul>
     </div>
     <div class="panel p-6">
-      <div class="mini-title">有 AgentHub Team model 时</div>
+      <div class="mini-title">演化路径</div>
       <ul class="mt-3 compact-list">
-        <li>Leader 负责 planning、decomposition、review 和 synthesis。</li>
-        <li>Workers 负责 execution、evidence 生产和本地记录。</li>
-        <li>Conversation 对人友好，Task 和 Run 对机器可审计。</li>
-        <li>Mailbox evidence 成为跨 agent 协作的显式记录。</li>
+        <li>最初，AgentHub 更像一个面向 ACP agent 的 remote manager。</li>
+        <li>随后，它演进成 <code>Agent Team</code>，解决复杂任务的分工、协作和恢复。</li>
+        <li>在 TiDB 这类超大 repo 场景里，又补上了 <code>remote agent node</code>。</li>
+        <li>这样 worker 就不必都挤在一台机器上抢 CPU、磁盘和编译缓存。</li>
       </ul>
     </div>
   </div>
 
   <div class="panel p-6 mt-6">
-    <div class="mini-title">Canonical Team model</div>
+    <div class="mini-title">为什么会继续演化</div>
     <div class="grid grid-cols-3 gap-4 mt-4">
       <div>
-        <div class="eyebrow">第 1 层</div>
-        <div class="font-semibold mt-1">Conversation</div>
-        <p class="muted mt-2">面向人的通道，用来承载目标、约束、确认和提问。</p>
+        <div class="eyebrow">复杂任务</div>
+        <div class="font-semibold mt-1">单个 agent 不够</div>
+        <p class="muted mt-2">一旦同时涉及 planning、execution、review 和 reporting，单 agent 很快就会失控。</p>
       </div>
       <div>
-        <div class="eyebrow">第 2 层</div>
-        <div class="font-semibold mt-1">Task Ownership</div>
-        <p class="muted mt-2">Leader 把达成一致的工作转成 canonical task，并明确 ownership。</p>
+        <div class="eyebrow">大仓库</div>
+        <div class="font-semibold mt-1">单机并发成本太高</div>
+        <p class="muted mt-2">TiDB repo 很大，多 worktree、多 build、多测试并发时，单台电脑很容易成为瓶颈。</p>
       </div>
       <div>
-        <div class="eyebrow">第 3 层</div>
-        <div class="font-semibold mt-1">Execution Telemetry</div>
-        <p class="muted mt-2">Run 和 step 是调试工件，不是主要协作单位。</p>
+        <div class="eyebrow">工程目标</div>
+        <div class="font-semibold mt-1">既要协作，也要落地</div>
+        <p class="muted mt-2">对人要保留自然对话，对机器要保留明确 ownership、协议和可回放执行。</p>
       </div>
     </div>
   </div>
@@ -164,7 +163,7 @@ routerMode: hash
     </div>
     <div class="panel p-4">
       <div class="mini-title">Workers</div>
-      <p class="muted mt-2">execution 与 evidence 在角色化 agent 之间流动。</p>
+      <p class="muted mt-2">worker 既可以本地运行，也可以挂到 remote agent node 上。</p>
     </div>
   </div>
 
@@ -188,8 +187,8 @@ routerMode: hash
       <p class="muted mt-2"><code>.cache/context</code> 保存 runtime continuity；<code>.agenthubmemory</code> 保存 durable notes。</p>
     </div>
     <div class="panel p-4">
-      <div class="mini-title">Event bus</div>
-      <p class="muted mt-2">实时可见性和 authoritative mailbox completion 是分开的。</p>
+      <div class="mini-title">Remote nodes</div>
+      <p class="muted mt-2">TiDB 这类大仓库的 checkout、build 和 test 可以分散到远端机器并发执行。</p>
     </div>
   </div>
 
