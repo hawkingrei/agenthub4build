@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap");
 
 :root {
   --ah-ink: #201915;
@@ -12,7 +12,7 @@
 }
 
 #slidev {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   color: var(--ah-ink);
   background: #f6f1e9;
 }
@@ -26,7 +26,7 @@
 .slidev-layout h2,
 .slidev-layout h3,
 .slidev-layout h4 {
-  font-family: "IBM Plex Serif", serif;
+  font-family: "IBM Plex Serif", "Noto Serif SC", "Songti SC", "STSong", serif;
   letter-spacing: -0.03em;
   font-weight: 600;
 }
