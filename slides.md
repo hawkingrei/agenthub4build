@@ -855,38 +855,54 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
 <div class="slide-shell">
   <div class="aurora"></div>
   <div class="eyebrow">结论</div>
-  <h1 class="!mt-3 !mb-8">这套栈说明了什么</h1>
+  <h1 class="!mt-3 !mb-8">Harness 在 TiDB 里的最终形态</h1>
 
-  <div class="grid grid-cols-2 gap-5">
-    <div class="panel p-6">
-      <div class="mini-title">1. 协作需要 protocol</div>
+  <div class="grid grid-cols-4 gap-3 text-sm">
+    <div class="flow-pill">Context Architecture</div>
+    <div class="flow-pill">Agent Specialization</div>
+    <div class="flow-pill">Persistent Memory</div>
+    <div class="flow-pill">Structured Execution</div>
+  </div>
+
+  <div class="grid grid-cols-4 gap-5 mt-6">
+    <div class="panel p-5">
+      <div class="mini-title">AgentHub</div>
       <p class="muted mt-2">
-        只有当 message transport、ownership 和 replay 都是显式的，Team 行为才会可靠。
+        用 Leader、Worker、Task、Trigger 和 actor protocol 把上下文收窄到当前任务。
       </p>
     </div>
-    <div class="panel p-6">
-      <div class="mini-title">2. 专长需要 skills</div>
+    <div class="panel p-5">
+      <div class="mini-title">TiDB skills</div>
       <p class="muted mt-2">
-        可复用的 skill contract，比不断膨胀的 system prompt 更适合作为扩展单位。
+        用受限工具和领域 workflow，把通用 agent 收敛成数据库工程师。
       </p>
     </div>
-    <div class="panel p-6">
-      <div class="mini-title">3. 长任务需要 memory 设计</div>
+    <div class="panel p-5">
+      <div class="mini-title">Filesystem memory</div>
       <p class="muted mt-2">
-        stable prefix、append-only log 和 pointerized artifact，才是长 run 可恢复的基础。
+        用 <code>.cache/context</code> 和 <code>.agenthubmemory</code> 把进度与经验持续留下来。
       </p>
     </div>
-    <div class="panel p-6">
-      <div class="mini-title">4. 领域价值来自闭环</div>
+    <div class="panel p-5">
+      <div class="mini-title">Shiro + CI</div>
       <p class="muted mt-2">
-        Shiro 之所以重要，是因为它把 bug discovery、replay、report 和 triage 串成了闭环。
+        用 fuzz、replay、triage 和 regression promotion 构成持续反馈闭环。
       </p>
     </div>
   </div>
 
+  <div class="flex flex-wrap gap-3 mt-6 text-sm">
+    <div class="flow-pill">Human intent</div>
+    <div class="flow-pill">AgentHub</div>
+    <div class="flow-pill">TiDB execution</div>
+    <div class="flow-pill">Shiro / CI feedback</div>
+    <div class="flow-pill">Repo artifacts</div>
+    <div class="flow-pill">Next task</div>
+  </div>
+
   <div class="panel panel-strong p-6 mt-6">
     <div class="text-3xl font-semibold leading-tight">
-      真正的产品不是“一个 agent”，而是能让多个 agent、tool 与 artifact 随时间持续复利的工程系统。
+      真正的产品不是“一个 agent”，而是一个能把人类意图、Agent 执行、仓库制品和 CI 反馈持续闭环起来的工程 harness。
     </div>
   </div>
 </div>
