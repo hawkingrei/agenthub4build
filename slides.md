@@ -154,8 +154,8 @@ routerMode: hash
       <p class="muted mt-2">承载人的目标、反馈和约束。</p>
     </div>
     <div class="panel p-4">
-      <div class="mini-title">Task / Run</div>
-      <p class="muted mt-2">Leader 把意图转换成明确的工作对象。</p>
+      <div class="mini-title">Task</div>
+      <p class="muted mt-2">Task 是 canonical execution unit；Run 更多承担 replay 和调试 telemetry。</p>
     </div>
     <div class="panel p-4">
       <div class="mini-title">Actor Mailbox</div>
@@ -292,6 +292,93 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
     <p class="mt-2">
       Conversation 不是 canonical task ledger。canonical execution unit 是 Task，
       canonical delivery evidence 是围绕该 Task 的 mailbox 交换。
+    </p>
+  </div>
+</div>
+
+---
+
+<div class="slide-shell">
+  <div class="aurora" style="opacity: 0.6"></div>
+  <div class="eyebrow">角色</div>
+  <h1 class="!mt-3 !mb-6">Leader、Worker 和 Task 是 Team 的核心抽象</h1>
+
+  <div class="grid grid-cols-3 gap-5">
+    <div class="panel p-5">
+      <div class="mini-title">Leader</div>
+      <ul class="mt-3 compact-list">
+        <li>直接听取人的需求、建议和约束。</li>
+        <li>把自然语言目标收敛成明确的 Task。</li>
+        <li>持续跟进 worker 进度，督促执行、解除阻塞并完成集成。</li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="mini-title">Worker</div>
+      <ul class="mt-3 compact-list">
+        <li>专注 execution，本地消化复杂度，而不是反复打断人。</li>
+        <li>围绕 Task 生产 evidence、更新状态并上报 blocker。</li>
+        <li>需要时可以运行在本地，也可以运行在 remote agent node 上。</li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="mini-title">Task</div>
+      <ul class="mt-3 compact-list">
+        <li>Task 是 human conversation 和 machine execution 之间的稳定抽象。</li>
+        <li>它明确 owner、status、acceptance criteria 和 evidence。</li>
+        <li>即使中途切换 context，Team 也能围绕 Task 恢复工作。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel panel-strong p-5 mt-6">
+    <div class="mini-title">为什么 Task 很关键</div>
+    <p class="mt-2">
+      Conversation 可以变化，Task 不能漂。Leader 面向人，Worker 面向执行，而 Task 负责把协作闭环稳定下来。
+    </p>
+  </div>
+</div>
+
+---
+
+<div class="slide-shell">
+  <div class="aurora" style="opacity: 0.58"></div>
+  <div class="eyebrow">Trigger</div>
+  <h1 class="!mt-3 !mb-6">Trigger 让 agent 能主动切换 context，而不是被动等待</h1>
+
+  <div class="grid grid-cols-[0.95fr_1.05fr] gap-6">
+    <div class="panel p-5">
+      <div class="mini-title">抽象本身</div>
+      <ul class="mt-3 compact-list">
+        <li>Trigger 是一个“未来再回来处理”的承诺。</li>
+        <li>它把等待中的工作从当前 context 里摘出来，等条件满足后再提示切回。</li>
+        <li>这样 Team 就能继续推进别的 Task，而不是空等。</li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="mini-title">时间型 trigger 例子</div>
+      <ol class="mt-3 pl-5">
+        <li>已知某个测试通常会跑 10 分钟。</li>
+        <li>先创建一个 <code>T+10m</code> 的 trigger。</li>
+        <li>这 10 分钟内切去处理别的 Task。</li>
+        <li>10 分钟后收到提醒，再回到原 Task 检查结果并决定下一步。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-4 gap-3 mt-6 text-sm">
+    <div class="flow-pill">start test</div>
+    <div class="flow-pill">set T+10m</div>
+    <div class="flow-pill">switch task</div>
+    <div class="flow-pill">resume context</div>
+  </div>
+
+  <div class="panel panel-strong p-5 mt-6">
+    <div class="mini-title">价值</div>
+    <p class="mt-2">
+      对大仓库研发来说，Trigger 的价值不是提醒本身，而是把等待显式化，让 context switch 成为一等公民。
     </p>
   </div>
 </div>
