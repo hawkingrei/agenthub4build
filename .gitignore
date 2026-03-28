@@ -1,0 +1,8 @@
+node_modules
+dist
+.slidev
+.vite
+.npm-cache
+components.d.ts
+auto-imports.d.ts
+agenthub-team-tidb-shiro.pptx

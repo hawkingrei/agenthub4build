@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root {
+  --ah-ink: #201915;
+  --ah-muted: #665a52;
+  --ah-accent: #b45309;
+  --ah-accent-2: #9a3412;
+  --ah-surface: rgba(255, 251, 245, 0.72);
+  --ah-surface-strong: rgba(255, 248, 238, 0.9);
+  --ah-border: rgba(120, 53, 15, 0.16);
+  --ah-shadow: 0 22px 64px rgba(120, 53, 15, 0.14);
+}
+
+#slidev {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--ah-ink);
+  background: #f6f1e9;
+}
+
+.slidev-layout {
+  background: transparent;
+  --uno: px-10 py-8 text-[1.05rem];
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  font-family: "IBM Plex Serif", serif;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.slidev-layout p,
+.slidev-layout li,
+.slidev-layout div,
+.slidev-layout span {
+  line-height: 1.45;
+}
+
+.slide-shell {
+  position: relative;
+  min-height: 100%;
+}
+
+.aurora {
+  position: absolute;
+  inset: -10% -6% auto -8%;
+  height: 120%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(251, 191, 36, 0.34), transparent 34%),
+    radial-gradient(circle at 82% 14%, rgba(249, 115, 22, 0.28), transparent 28%),
+    radial-gradient(circle at 65% 72%, rgba(244, 114, 182, 0.16), transparent 30%),
+    linear-gradient(135deg, #fff8f0 0%, #f6f1e9 42%, #efe4d4 100%);
+  filter: saturate(110%);
+}
+
+.eyebrow {
+  color: var(--ah-accent-2);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.panel {
+  background: var(--ah-surface);
+  border: 1px solid var(--ah-border);
+  border-radius: 1.2rem;
+  box-shadow: var(--ah-shadow);
+  backdrop-filter: blur(16px);
+}
+
+.panel-strong {
+  background: var(--ah-surface-strong);
+}
+
+.metric {
+  font-family: "IBM Plex Serif", serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--ah-accent-2);
+  line-height: 1;
+}
+
+.muted {
+  color: var(--ah-muted);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  padding: 0.42rem 0.9rem;
+  border: 1px solid rgba(120, 53, 15, 0.18);
+  background: rgba(255, 252, 248, 0.7);
+  color: #7c2d12;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.code-card pre {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  background: #201915;
+  color: #fef7ed;
+  box-shadow: inset 0 0 0 1px rgba(255, 251, 235, 0.08);
+}
+
+.flow-pill {
+  border-radius: 999px;
+  padding: 0.65rem 0.95rem;
+  background: linear-gradient(135deg, rgba(255, 251, 235, 0.96), rgba(255, 237, 213, 0.92));
+  border: 1px solid rgba(194, 65, 12, 0.18);
+  font-weight: 600;
+  text-align: center;
+}
+
+.mini-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.quote-line {
+  border-left: 4px solid rgba(180, 83, 9, 0.55);
+  padding-left: 1rem;
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(120, 53, 15, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 53, 15, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.slidev-layout code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9em;
+}
+
+.slidev-layout a {
+  color: #9a3412;
+}
+
+.slidev-layout ul {
+  padding-left: 1rem;
+}
+
+.slidev-layout li {
+  margin-top: 0.35rem;
+}
+
+.compact-list li {
+  margin-top: 0.18rem;
+}
+
+.table-lite table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-lite th,
+.table-lite td {
+  padding: 0.7rem 0.8rem;
+  border-bottom: 1px solid rgba(120, 53, 15, 0.12);
+  vertical-align: top;
+}
+
+.table-lite th {
+  text-align: left;
+  color: var(--ah-accent-2);
+  font-weight: 700;
+}
+
+.slidev-layout blockquote {
+  border-left: 4px solid rgba(180, 83, 9, 0.45);
+  background: rgba(255, 251, 245, 0.72);
+  padding: 0.9rem 1rem;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.slidev-layout .mermaid {
+  background: rgba(255, 251, 245, 0.7);
+  border: 1px solid rgba(120, 53, 15, 0.12);
+  border-radius: 1.2rem;
+  padding: 0.8rem;
+}
