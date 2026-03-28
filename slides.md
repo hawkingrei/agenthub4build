@@ -301,14 +301,14 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.6"></div>
   <div class="eyebrow">角色</div>
-  <h1 class="!mt-3 !mb-6">Leader、Worker 和 Task 是 Team 的核心抽象</h1>
+  <h1 class="!mt-3 !mb-6">Leader 面向人，Worker 面向执行，Task 稳定协作边界</h1>
 
   <div class="grid grid-cols-3 gap-5">
     <div class="panel p-5">
       <div class="mini-title">Leader</div>
       <ul class="mt-3 compact-list">
-        <li>直接听取人的需求、建议和约束。</li>
-        <li>把自然语言目标收敛成明确的 Task。</li>
+        <li>直接听取人的目标、建议和约束，持续保持对齐。</li>
+        <li>把开放式需求收敛成可执行的 Task。</li>
         <li>持续跟进 worker 进度，督促执行、解除阻塞并完成集成。</li>
       </ul>
     </div>
@@ -316,8 +316,8 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
     <div class="panel p-5">
       <div class="mini-title">Worker</div>
       <ul class="mt-3 compact-list">
-        <li>专注 execution，本地消化复杂度，而不是反复打断人。</li>
-        <li>围绕 Task 生产 evidence、更新状态并上报 blocker。</li>
+        <li>围绕分配到的 Task 专注 execution，而不是反复打断人。</li>
+        <li>生产 evidence、更新 status，并及时暴露 blocker。</li>
         <li>需要时可以运行在本地，也可以运行在 remote agent node 上。</li>
       </ul>
     </div>
@@ -325,17 +325,27 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
     <div class="panel p-5">
       <div class="mini-title">Task</div>
       <ul class="mt-3 compact-list">
-        <li>Task 是 human conversation 和 machine execution 之间的稳定抽象。</li>
-        <li>它明确 owner、status、acceptance criteria 和 evidence。</li>
+        <li>Task 是 human intent 和 machine execution 之间的 canonical abstraction。</li>
+        <li>它固定了 owner、status、acceptance criteria 和 evidence。</li>
         <li>即使中途切换 context，Team 也能围绕 Task 恢复工作。</li>
       </ul>
     </div>
   </div>
 
+  <div class="flex flex-wrap gap-3 mt-6 text-sm">
+    <div class="flow-pill">Human</div>
+    <div class="flow-pill">Leader</div>
+    <div class="flow-pill">Task</div>
+    <div class="flow-pill">Worker</div>
+    <div class="flow-pill">Evidence</div>
+    <div class="flow-pill">Leader</div>
+    <div class="flow-pill">Answer</div>
+  </div>
+
   <div class="panel panel-strong p-5 mt-6">
     <div class="mini-title">为什么 Task 很关键</div>
     <p class="mt-2">
-      Conversation 可以变化，Task 不能漂。Leader 面向人，Worker 面向执行，而 Task 负责把协作闭环稳定下来。
+      Conversation 可以变化，Task 不能漂。Leader 直接对人负责，Worker 直接对 Task 负责，而 Task 负责把协作闭环稳定下来。
     </p>
   </div>
 </div>
@@ -345,40 +355,55 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.58"></div>
   <div class="eyebrow">Trigger</div>
-  <h1 class="!mt-3 !mb-6">Trigger 让 agent 能主动切换 context，而不是被动等待</h1>
+  <h1 class="!mt-3 !mb-6">Trigger 把等待变成可调度的工作</h1>
 
-  <div class="grid grid-cols-[0.95fr_1.05fr] gap-6">
-    <div class="panel p-5">
-      <div class="mini-title">抽象本身</div>
-      <ul class="mt-3 compact-list">
-        <li>Trigger 是一个“未来再回来处理”的承诺。</li>
-        <li>它把等待中的工作从当前 context 里摘出来，等条件满足后再提示切回。</li>
-        <li>这样 Team 就能继续推进别的 Task，而不是空等。</li>
-      </ul>
-    </div>
+  <div class="panel p-5">
+    <div class="mini-title">抽象本身</div>
+    <ul class="mt-3 compact-list">
+      <li>Trigger 不是简单提醒，而是“条件满足后恢复某个 Task”的抽象。</li>
+      <li>条件可以是时间，也可以是外部事件。</li>
+      <li>这样 Team 就能在等待期间切去做别的 Task，而不是空等。</li>
+    </ul>
+  </div>
 
+  <div class="grid grid-cols-2 gap-6 mt-6">
     <div class="panel p-5">
-      <div class="mini-title">时间型 trigger 例子</div>
+      <div class="mini-title">时间型 trigger</div>
       <ol class="mt-3 pl-5">
         <li>已知某个测试通常会跑 10 分钟。</li>
         <li>先创建一个 <code>T+10m</code> 的 trigger。</li>
         <li>这 10 分钟内切去处理别的 Task。</li>
         <li>10 分钟后收到提醒，再回到原 Task 检查结果并决定下一步。</li>
       </ol>
+      <div class="flex flex-wrap gap-2 mt-4 text-sm">
+        <div class="flow-pill">start test</div>
+        <div class="flow-pill">set T+10m</div>
+        <div class="flow-pill">switch task</div>
+        <div class="flow-pill">resume context</div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid grid-cols-4 gap-3 mt-6 text-sm">
-    <div class="flow-pill">start test</div>
-    <div class="flow-pill">set T+10m</div>
-    <div class="flow-pill">switch task</div>
-    <div class="flow-pill">resume context</div>
+    <div class="panel p-5">
+      <div class="mini-title">事件型 trigger</div>
+      <ol class="mt-3 pl-5">
+        <li>例如监听 <code>GitHub webhook</code>，等待 CI 完成、PR review 或 issue 更新。</li>
+        <li>事件没到之前，Leader 不需要一直盯着页面刷新。</li>
+        <li>事件一到，就恢复对应 Task，继续 review、merge 或修复流程。</li>
+        <li>Trigger 把外部系统事件自然接到 Team workflow 里。</li>
+      </ol>
+      <div class="flex flex-wrap gap-2 mt-4 text-sm">
+        <div class="flow-pill">wait webhook</div>
+        <div class="flow-pill">event arrives</div>
+        <div class="flow-pill">resume task</div>
+        <div class="flow-pill">continue workflow</div>
+      </div>
+    </div>
   </div>
 
   <div class="panel panel-strong p-5 mt-6">
     <div class="mini-title">价值</div>
     <p class="mt-2">
-      对大仓库研发来说，Trigger 的价值不是提醒本身，而是把等待显式化，让 context switch 成为一等公民。
+      对大仓库研发来说，Trigger 的价值不是提醒本身，而是把等待显式化，让 timer、webhook 和 context switch 成为一等公民。
     </p>
   </div>
 </div>
