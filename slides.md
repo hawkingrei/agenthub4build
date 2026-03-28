@@ -27,11 +27,11 @@ routerMode: hash
   <div class="grid grid-cols-2 gap-4 max-w-4xl mt-12">
     <div class="panel p-5">
       <div class="eyebrow">范围</div>
-      <div class="mt-2 text-lg font-semibold">Agent team、actor protocol、workflow、memory、TiDB skills、Shiro</div>
+      <div class="mt-2 text-lg font-semibold">Agent Team、actor system、workflow、memory、TiDB skills、Shiro</div>
     </div>
     <div class="panel p-5">
       <div class="eyebrow">核心判断</div>
-      <div class="mt-2 text-lg font-semibold">真正有用的 AI 系统，来自协作、专长、持久状态和领域闭环的组合</div>
+      <div class="mt-2 text-lg font-semibold">真正有用的 AI 系统，不是更大的 prompt，而是协作、专长、持久状态和领域闭环的组合</div>
     </div>
   </div>
 
@@ -49,7 +49,7 @@ routerMode: hash
 <div class="slide-shell soft-grid">
   <div class="aurora" style="opacity: 0.55"></div>
   <div class="eyebrow">总览</div>
-  <h1 class="!mt-3 !mb-8">这套栈是四个系统，不是一个单点产品</h1>
+  <h1 class="!mt-3 !mb-8">这不是一个单点产品，而是四个相互咬合的系统</h1>
 
   <div class="grid grid-cols-2 gap-5">
     <div class="panel p-6">
@@ -86,7 +86,7 @@ routerMode: hash
     <div class="quote-line">
       <div class="mini-title">关键视角</div>
       <p class="mt-2">
-        单 agent demo 优化的是一次回答；生产级工程系统优化的是委派、回放、证据和恢复。
+        单 agent demo 优化的是一次回答；工程系统优化的是委派、回放、证据与恢复。
       </p>
     </div>
   </div>
@@ -97,7 +97,7 @@ routerMode: hash
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.62"></div>
   <div class="eyebrow">为什么需要 Team</div>
-  <h1 class="!mt-3 !mb-6">AgentHub 不是一个更聪明的 agent，而是一套有纪律的 Team</h1>
+  <h1 class="!mt-3 !mb-6">AgentHub 不是“更聪明的 agent”，而是一套有纪律的 Team</h1>
 
   <div class="grid grid-cols-2 gap-6">
     <div class="panel p-6">
@@ -110,12 +110,12 @@ routerMode: hash
       </ul>
     </div>
     <div class="panel p-6">
-      <div class="mini-title">有 AgentHub model 时</div>
+      <div class="mini-title">有 AgentHub Team model 时</div>
       <ul class="mt-3 compact-list">
         <li>Leader 负责 planning、decomposition、review 和 synthesis。</li>
         <li>Workers 负责 execution、evidence 生产和本地记录。</li>
-        <li>Conversation 保持对人友好，Task 和 Run 保持对机器可审计。</li>
-        <li>Mailbox evidence 成为跨 agent 协作的持久记录。</li>
+        <li>Conversation 对人友好，Task 和 Run 对机器可审计。</li>
+        <li>Mailbox evidence 成为跨 agent 协作的显式记录。</li>
       </ul>
     </div>
   </div>
@@ -147,12 +147,12 @@ routerMode: hash
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.56"></div>
   <div class="eyebrow">架构</div>
-  <h1 class="!mt-3 !mb-6">Actor 是协作底座</h1>
+  <h1 class="!mt-3 !mb-6">Actor system 是协作底座</h1>
 
   <div class="grid grid-cols-4 gap-4">
     <div class="panel p-4">
       <div class="mini-title">Conversation</div>
-      <p class="muted mt-2">人的目标和反馈停留在共享通道中。</p>
+      <p class="muted mt-2">承载人的目标、反馈和约束。</p>
     </div>
     <div class="panel p-4">
       <div class="mini-title">Task / Run</div>
@@ -164,7 +164,7 @@ routerMode: hash
     </div>
     <div class="panel p-4">
       <div class="mini-title">Workers</div>
-      <p class="muted mt-2">execution 和 evidence 通过角色化 agent 流动。</p>
+      <p class="muted mt-2">execution 与 evidence 在角色化 agent 之间流动。</p>
     </div>
   </div>
 
@@ -214,7 +214,7 @@ routerMode: hash
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.58"></div>
   <div class="eyebrow">协议</div>
-  <h1 class="!mt-3 !mb-6">Actor loop 被刻意收得很小</h1>
+  <h1 class="!mt-3 !mb-6">Actor loop 被有意收窄到最小闭环</h1>
 
   <div class="grid grid-cols-[1.15fr_0.85fr] gap-6">
     <div class="panel code-card p-5">
@@ -302,7 +302,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.6"></div>
   <div class="eyebrow">Memory</div>
-  <h1 class="!mt-3 !mb-6">Memory management 按生命周期拆分，而不是按方便程度拆分</h1>
+  <h1 class="!mt-3 !mb-6">Memory management 要按生命周期拆分，而不是按方便程度拆分</h1>
 
   <div class="grid grid-cols-2 gap-6">
     <div class="panel p-6">
@@ -331,7 +331,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
   <div class="panel panel-strong p-5 mt-6">
     <div class="mini-title">设计规则</div>
     <p class="mt-2">
-      跨成员共享要经过 mailbox 或 channel pointer，而不是直接写对方文件系统。
+      跨成员共享必须经过 mailbox 或 channel pointer，不能直接写对方文件系统。
       这样 ownership 才是显式的，也能避免静默的 context 污染。
     </p>
   </div>
@@ -381,7 +381,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
   </div>
 
   <blockquote class="mt-6">
-    设计目标是：在不让 prompt 膨胀的前提下获得精确性。先有 role baseline，再有 phase，最后只在需要时叠加 domain specialization。
+    设计目标是：在不让 prompt 膨胀的前提下，让行为足够精确。先有 role baseline，再有 phase，最后只在需要时叠加 domain specialization。
   </blockquote>
 </div>
 
@@ -433,7 +433,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
       <div class="mini-title">工程效果</div>
       <ul class="mt-3 compact-list">
         <li>更高的 signal-to-token ratio。</li>
-        <li>更低的泛化式、低质量 coding 行为风险。</li>
+        <li>更低的空泛推理和低质量 coding 风险。</li>
       </ul>
     </div>
   </div>
@@ -444,7 +444,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.58"></div>
   <div class="eyebrow">例子</div>
-  <h1 class="!mt-3 !mb-6">一个端到端的 TiDB engineering loop</h1>
+  <h1 class="!mt-3 !mb-6">一个端到端的 TiDB engineering loop 示例</h1>
 
   <div class="grid grid-cols-[0.95fr_1.05fr] gap-6">
     <div class="panel p-5">
@@ -453,7 +453,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         <li>Human 提出一个 optimizer bug fix 请求。</li>
         <li>Leader 拆解工作并创建 Task。</li>
         <li>Worker 使用 <code>tidb-optimizer-bugfix</code> 接手任务。</li>
-        <li>Worker 把发现记录进 <code>.agenthubmemory</code>。</li>
+        <li>Worker 把局部发现沉淀到 <code>.agenthubmemory</code>。</li>
         <li>Worker 通过 actor mailbox 回传 evidence。</li>
         <li>Leader review、集成并关闭该 Task。</li>
       </ol>
@@ -468,7 +468,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         <li><code>next_action</code>：Leader 或 reviewer 下一步该做什么。</li>
       </ul>
       <p class="muted mt-4">
-        重点不是漂亮的 JSON，而是带足够 evidence 的 deterministic handoff。
+        重点不是漂亮的 JSON，而是有足够 evidence 的 deterministic handoff。
       </p>
     </div>
   </div>
@@ -486,7 +486,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.62"></div>
   <div class="eyebrow">Shiro</div>
-  <h1 class="!mt-3 !mb-6">Shiro 是一个面向 TiDB optimizer 的 fuzzing system</h1>
+  <h1 class="!mt-3 !mb-6">Shiro 是面向 TiDB optimizer 的 fuzzing system</h1>
 
   <div class="grid grid-cols-4 gap-4">
     <div class="panel p-5">
@@ -508,7 +508,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
   </div>
 
   <div class="panel code-card p-5 mt-6">
-    <div class="mini-title mb-3">入口命令很简单</div>
+    <div class="mini-title mb-3">入口命令并不复杂</div>
     <p class="mt-1">
       用 <code>go run ./cmd/shiro -config config.yaml</code> 启动，然后让 generation、
       oracle check、replay capture 和 reporting 持续推动这个闭环。
@@ -553,7 +553,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
       <div class="mini-title">Exact multiplicity path</div>
       <p class="muted mt-2">
         Bitmap truth 很便宜，但在非唯一 join key 上会少算。Shiro 增加了带上限控制的 hash-join counting path，
-        在不把 memory 撑爆的情况下保持精确。
+        在不把 memory 撑爆的前提下保持精确。
       </p>
     </div>
   </div>
@@ -571,7 +571,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.58"></div>
   <div class="eyebrow">AI 分诊</div>
-  <h1 class="!mt-3 !mb-6">Shiro 还长出了一个 metadata 与 AI-assisted triage 平面</h1>
+  <h1 class="!mt-3 !mb-6">Shiro 还扩展出了一个 metadata 与 AI-assisted triage 平面</h1>
 
   <div class="grid grid-cols-6 gap-3 text-sm">
     <div class="flow-pill">Captured case</div>
@@ -592,7 +592,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
     <div class="panel p-5">
       <div class="mini-title">AI 角度</div>
       <p class="muted mt-2">
-        similar-bug search 可以在 top candidates 上叠加 AI explanation 和 rerank，把原始 fuzz 输出转成更快的人类分诊流程。
+        similar-bug search 可以在 top candidates 上叠加 AI explanation 与 rerank，把原始 fuzz 输出转成更快的人类分诊流程。
       </p>
     </div>
   </div>
@@ -634,7 +634,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
 
   <div class="panel panel-strong p-6 mt-6">
     <div class="text-3xl font-semibold leading-tight">
-      真正的产品不是“一个 agent”，而是能让多个 agent、tool 和 artifact 随时间持续复利的工程系统。
+      真正的产品不是“一个 agent”，而是能让多个 agent、tool 与 artifact 随时间持续复利的工程系统。
     </div>
   </div>
 </div>
