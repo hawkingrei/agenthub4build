@@ -241,63 +241,68 @@ routerMode: hash
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.56"></div>
   <div class="eyebrow">架构</div>
-  <h1 class="!mt-3 !mb-6">Actor system 是协作底座</h1>
+  <h1 class="!mt-3 !mb-6">Actor system 把协作拆成三个平面</h1>
 
-  <div class="grid grid-cols-4 gap-4">
-    <div class="panel p-4">
-      <div class="mini-title">Conversation</div>
-      <p class="muted mt-2">承载人的目标、反馈和约束。</p>
-    </div>
-    <div class="panel p-4">
-      <div class="mini-title">Task</div>
-      <p class="muted mt-2">Task 是 canonical execution unit，负责承载明确的 owner、status 和 evidence。</p>
-    </div>
-    <div class="panel p-4">
-      <div class="mini-title">Actor Mailbox</div>
-      <p class="muted mt-2">跨 agent 交付始终遵循 <code>send -> inbox -> ack</code>。</p>
-    </div>
-    <div class="panel p-4">
-      <div class="mini-title">Workers</div>
-      <p class="muted mt-2">worker 既可以本地运行，也可以挂到 remote agent node 上。</p>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-6 gap-3 mt-5 text-sm">
-    <div class="flow-pill">Human</div>
+  <div class="flex flex-wrap gap-3 text-sm">
+    <div class="flow-pill">Human intent</div>
     <div class="flow-pill">Leader</div>
     <div class="flow-pill">Task</div>
     <div class="flow-pill">Mailbox</div>
     <div class="flow-pill">Worker</div>
+    <div class="flow-pill">Evidence</div>
     <div class="flow-pill">Review</div>
   </div>
 
-  <div class="grid grid-cols-3 gap-4 mt-5">
-    <div class="panel p-4">
-      <div class="mini-title">Skills</div>
-      <p class="muted mt-2">Role、phase 和 domain skills 共同塑造行为，而不是依赖一个不断膨胀的大 prompt。</p>
+  <div class="grid grid-cols-3 gap-5 mt-6">
+    <div class="panel p-5">
+      <div class="mini-title">1. Coordination plane</div>
+      <p class="muted mt-2">
+        Leader 直接面对人类需求，把 conversation 收敛成 Task。
+      </p>
+      <ul class="mt-4 compact-list">
+        <li>Conversation 承载目标、约束和建议。</li>
+        <li>Task 是 canonical execution unit。</li>
+        <li>Trigger 负责等待与 context switch。</li>
+      </ul>
     </div>
-    <div class="panel p-4">
-      <div class="mini-title">Memory</div>
-      <p class="muted mt-2"><code>.cache/context</code> 保存 runtime continuity；<code>.agenthubmemory</code> 保存 durable notes。</p>
+
+    <div class="panel p-5">
+      <div class="mini-title">2. Delivery plane</div>
+      <p class="muted mt-2">
+        协作不直接依赖聊天记录，而是依赖 mailbox transport。
+      </p>
+      <ul class="mt-4 compact-list">
+        <li>交付始终遵循 <code>send -> inbox -> ack</code>。</li>
+        <li><code>pending_count</code> 提供未处理快照。</li>
+        <li>channel event 负责提醒，mailbox ack 才是完成信号。</li>
+      </ul>
     </div>
-    <div class="panel p-4">
-      <div class="mini-title">Remote nodes</div>
-      <p class="muted mt-2">TiDB 这类大仓库的 checkout、build 和 test 可以分散到远端机器并发执行。</p>
+
+    <div class="panel p-5">
+      <div class="mini-title">3. Execution plane</div>
+      <p class="muted mt-2">
+        Worker 围绕 Task 执行，复杂度由 skills、memory 和 remote nodes 吸收。
+      </p>
+      <ul class="mt-4 compact-list">
+        <li>skills 决定角色和领域行为。</li>
+        <li>memory 负责连续性与经验沉淀。</li>
+        <li>remote nodes 支撑 TiDB 大仓库并发执行。</li>
+      </ul>
     </div>
   </div>
 
-  <div class="grid grid-cols-3 gap-4 mt-5">
+  <div class="grid grid-cols-3 gap-4 mt-6">
     <div class="panel p-4">
       <div class="mini-title">Identity</div>
-      <p class="muted mt-2"><code>actor_id</code> 是 canonical identity；<code>run_id</code> 用来切分 replay 和 delivery。</p>
+      <p class="muted mt-2"><code>actor_id</code> 是 canonical identity；<code>run_id</code> 用来切分 delivery 和 replay。</p>
     </div>
     <div class="panel p-4">
       <div class="mini-title">Reliability</div>
-      <p class="muted mt-2">采用 at-least-once delivery，并要求 send 和 ack 具备 idempotent 语义。</p>
+      <p class="muted mt-2">采用 at-least-once delivery，并要求 send / ack 具备 idempotent 语义。</p>
     </div>
     <div class="panel p-4">
       <div class="mini-title">Authority</div>
-      <p class="muted mt-2">Main DB 是真相来源；event bus 负责实时 fan-out，而不负责 execution truth。</p>
+      <p class="muted mt-2">Main DB 是真相来源；event bus 提供实时 fan-out，但不负责 execution truth。</p>
     </div>
   </div>
 </div>
