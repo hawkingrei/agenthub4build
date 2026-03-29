@@ -911,8 +911,8 @@ routerMode: hash
   </div>
 
   <div class="panel panel-strong p-6 mt-6">
-    <div class="text-3xl font-semibold leading-tight">
-      真正的产品不是“一个 agent”，而是一个能把人类意图、Agent 执行、仓库制品和 CI 反馈持续闭环起来的工程 harness。
+    <div class="text-2xl font-semibold leading-tight">
+      真正重要的不是单个 agent，而是让人类意图、Agent 执行和 CI 反馈形成持续闭环的工程 harness。
     </div>
   </div>
 </div>
