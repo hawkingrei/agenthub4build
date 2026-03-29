@@ -507,7 +507,7 @@ routerMode: hash
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.6"></div>
   <div class="eyebrow">Memory</div>
-  <h1 class="!mt-3 !mb-6">Memory management 要按生命周期拆分，而不是按方便程度拆分</h1>
+  <h1 class="!mt-3 !mb-6">Memory management</h1>
 
   <div class="grid grid-cols-3 gap-5">
     <div class="panel p-6">
