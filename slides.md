@@ -1,6 +1,6 @@
 ---
 theme: seriph
-title: Harness Engineer：Agent Team 在 TiDB 优化器研发中的应用
+title: Harness Engineering：Agent Team 在 TiDB 优化器研发中的应用
 info: |
   一个关于 AgentHub team runtime、TiDB skills、memory 设计与 Shiro 的 Slidev deck。
 class: text-left
@@ -17,7 +17,7 @@ routerMode: hash
   <div class="aurora"></div>
   <div class="eyebrow">技术分享</div>
   <div class="max-w-5xl mt-8">
-    <h1 class="!text-6xl !leading-tight !mb-6">Harness Engineer：Agent Team 在 TiDB 优化器研发中的应用</h1>
+    <h1 class="!text-6xl !leading-tight !mb-6">Harness Engineering：Agent Team 在 TiDB 优化器研发中的应用</h1>
     <p class="text-2xl leading-10 max-w-4xl">
       以 AgentHub 作为协作底座，以 TiDB skills 作为领域能力，以 memory 维持长周期连续性，
       并用 Shiro 构建优化器 bug 发现与分诊闭环。
