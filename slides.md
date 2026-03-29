@@ -49,7 +49,7 @@ routerMode: hash
 <div class="slide-shell soft-grid">
   <div class="aurora" style="opacity: 0.55"></div>
   <div class="eyebrow">总览</div>
-  <h1 class="!mt-3 !mb-8">这不是一个产品，而是一个内部平台</h1>
+  <h1 class="!mt-3 !mb-8">今天主要讲四个技术问题</h1>
 
   <div class="grid grid-cols-2 gap-5">
     <div class="panel p-6">
@@ -86,7 +86,7 @@ routerMode: hash
     <div class="quote-line">
       <div class="mini-title">关键视角</div>
       <p class="mt-2">
-        单 agent demo 优化的是一次回答；内部平台优化的是协作效率、约束执行、持久记忆和反馈闭环。
+        单 agent demo 优化的是一次回答；这里更关注协作效率、约束执行、持久记忆和反馈闭环。
       </p>
     </div>
   </div>
