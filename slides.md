@@ -314,11 +314,12 @@ routerMode: hash
 
   <div class="grid grid-cols-[1.15fr_0.85fr] gap-6">
     <div class="panel code-card p-5">
-      <div class="mini-title mb-3">Mailbox-first 协作</div>
-      <div class="rounded-4 bg-stone-950 text-amber-50 font-mono text-sm leading-6 p-4 whitespace-pre">agenthub actor inbox --limit 50
-agenthub actor ack --message-id [message_id]
-agenthub actor send --to-actor-id [member_id] --text-file update.md
-agenthub actor send --channel-id all --text-file broadcast.md</div>
+      <div class="mini-title mb-3">三条核心命令</div>
+      <div class="rounded-4 bg-stone-950 text-amber-50 p-4">
+        <div class="font-mono text-sm leading-6">agenthub actor inbox --limit 50</div>
+        <div class="font-mono text-sm leading-6 mt-2">agenthub actor ack --message-id ...</div>
+        <div class="font-mono text-sm leading-6 mt-2">agenthub actor send --to-actor-id ...</div>
+      </div>
       <p class="muted mt-4">
         这个 contract 被有意收窄：读取工作、确认 evidence、发送下一状态。
       </p>
