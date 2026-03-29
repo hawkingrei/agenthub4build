@@ -561,6 +561,9 @@ routerMode: hash
   <div class="grid grid-cols-3 gap-5">
     <div class="panel p-5">
       <div class="mini-title">Role-bound skills</div>
+      <p class="muted mt-2">
+        跟角色绑定，定义 Leader / Worker 从启动开始就遵守的基线职责。
+      </p>
       <ul class="mt-3 compact-list">
         <li><code>team-agents-index</code></li>
         <li><code>team-leader-agents-index</code></li>
@@ -572,25 +575,25 @@ routerMode: hash
     </div>
     <div class="panel p-5">
       <div class="mini-title">Phase skills</div>
+      <p class="muted mt-2">
+        跟当前 phase 绑定，只在分析、评审或集成等阶段按需加载。
+      </p>
       <ul class="mt-3 compact-list">
         <li><code>team-task-lifecycle</code></li>
         <li><code>team-deliberation-rules</code></li>
       </ul>
-      <p class="muted mt-4">
-        只在 phase 需要时加载，这样 context 大小才能保持可控。
-      </p>
     </div>
     <div class="panel p-5">
       <div class="mini-title">Domain skills</div>
+      <p class="muted mt-2">
+        跟领域绑定，把 TiDB 的 workflow、validation 和 artifact 约束带进 runtime。
+      </p>
       <ul class="mt-3 compact-list">
         <li><code>tidb-optimizer-bugfix</code></li>
         <li><code>tidb-doc-finder</code></li>
         <li><code>tidb-profiler-analyzer</code></li>
         <li><code>context-management</code></li>
       </ul>
-      <p class="muted mt-4">
-        Domain skills 注入具体的 workflow、validation 规则和 artifact 约束。
-      </p>
     </div>
   </div>
 
