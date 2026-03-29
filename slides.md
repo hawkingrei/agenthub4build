@@ -863,6 +863,43 @@ routerMode: hash
 ---
 
 <div class="slide-shell">
+  <div class="aurora" style="opacity: 0.56"></div>
+  <div class="eyebrow">Thinking</div>
+  <h1 class="!mt-3 !mb-6">从 bugfix 到可证明正确性</h1>
+
+  <div class="grid grid-cols-3 gap-5">
+    <div class="panel p-5">
+      <div class="mini-title">只能修 bugfix 吗？</div>
+      <p class="muted mt-2">
+        不是。bugfix 只是今天最容易闭环的起点，因为 repro 清楚、验证便宜、回归路径也最成熟。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">能构造更复杂的功能吗？</div>
+      <p class="muted mt-2">
+        下一步不只是 repair，而是在明确约束、测试和 review 下，构造更复杂、责任更高的 feature 和 workflow。
+      </p>
+    </div>
+    <div class="panel p-5">
+      <div class="mini-title">能用形式化证明吗？</div>
+      <p class="muted mt-2">
+        对关键协议，值得把 tests 再往前推一步，用 model checking、type-level invariants 或 theorem proving 来证明设计的正确性。
+      </p>
+    </div>
+  </div>
+
+  <div class="panel panel-strong p-5 mt-6">
+    <div class="mini-title">更现实的落点</div>
+    <p class="mt-2">
+      不是一开始就证明整个系统，而是先证明 mailbox、trigger、idempotency、replay 这些核心 contract，
+      把“经验上正确”逐步升级成“machine-checkable correctness”。
+    </p>
+  </div>
+</div>
+
+---
+
+<div class="slide-shell">
   <div class="aurora"></div>
   <div class="eyebrow">结论</div>
   <h1 class="!mt-3 !mb-8">Harness 在 TiDB 里的最终形态</h1>
