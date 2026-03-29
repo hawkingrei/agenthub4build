@@ -70,7 +70,7 @@ routerMode: hash
       <div class="metric">03</div>
       <div class="mini-title mt-3">连续性</div>
       <p class="mt-2 muted">
-        memory 如何把易变的 runtime 状态和持久的项目知识分开。
+        人不持续介入时，任务如何仍然长期推进，并在需要时恢复上下文。
       </p>
     </div>
     <div class="panel p-6">
@@ -272,7 +272,7 @@ routerMode: hash
       </p>
       <ul class="mt-4 compact-list">
         <li>交付始终遵循 <code>send -> inbox -> ack</code>。</li>
-        <li><code>pending_count</code> 提供未处理快照。</li>
+        <li><code>pending_count</code> 提供当前未处理消息的个数。</li>
         <li>channel event 负责提醒，mailbox ack 才是完成信号。</li>
       </ul>
     </div>
@@ -310,7 +310,7 @@ routerMode: hash
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.58"></div>
   <div class="eyebrow">协议</div>
-  <h1 class="!mt-3 !mb-6">Actor loop 被有意收窄到最小闭环</h1>
+  <h1 class="!mt-3 !mb-6">Mailbox-first 协作协议：inbox / ack / send</h1>
 
   <div class="grid grid-cols-[1.15fr_0.85fr] gap-6">
     <div class="panel code-card p-5">
@@ -323,13 +323,12 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         这个 contract 被有意收窄：读取工作、确认 evidence、发送下一状态。
       </p>
     </div>
-
     <div class="panel p-5">
       <div class="mini-title">为什么重要</div>
       <ul class="mt-3 compact-list">
         <li>稳定的 surface 意味着更小的 prompt 和更少的隐藏执行路径。</li>
         <li><code>run_id</code> 让 replay 保持 deterministic。</li>
-        <li><code>pending_count</code> 提供一个低成本的未读快照。</li>
+        <li><code>pending_count</code> 提供一个低成本的未处理消息计数。</li>
         <li>channel event 改善 UX，但 mailbox ack 仍然是完成信号。</li>
       </ul>
     </div>
@@ -349,7 +348,7 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
 <div class="slide-shell">
   <div class="aurora" style="opacity: 0.62"></div>
   <div class="eyebrow">工作流</div>
-  <h1 class="!mt-3 !mb-8">六个 phase 让 Team run 保持可理解</h1>
+  <h1 class="!mt-3 !mb-8">任务交给 Leader 后，workflow 才能持续推进</h1>
 
   <div class="grid grid-cols-3 gap-4">
     <div class="panel p-5">
@@ -387,8 +386,8 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
   <div class="panel panel-strong p-5 mt-6">
     <div class="mini-title">关键设计选择</div>
     <p class="mt-2">
-      Conversation 不是 canonical task ledger。canonical execution unit 是 Task，
-      canonical delivery evidence 是围绕该 Task 的 mailbox 交换。
+      人不需要一直盯住执行细节。目标一旦交给 Leader，Leader 就可以围绕 Task 持续拆解、分派、跟进和集成，
+      直到需要新的判断时再把上下文带回给人。
     </p>
   </div>
 </div>
@@ -409,7 +408,6 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         <li>持续跟进 worker 进度，督促执行、解除阻塞并完成集成。</li>
       </ul>
     </div>
-
     <div class="panel p-5">
       <div class="mini-title">Worker</div>
       <ul class="mt-3 compact-list">
@@ -418,7 +416,6 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         <li>需要时可以运行在本地，也可以运行在 remote agent node 上，把 TiDB 的并发测试拆到多台机器。</li>
       </ul>
     </div>
-
     <div class="panel p-5">
       <div class="mini-title">Task</div>
       <ul class="mt-3 compact-list">
@@ -479,7 +476,6 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         <div class="flow-pill">resume context</div>
       </div>
     </div>
-
     <div class="panel p-5">
       <div class="mini-title">事件型 trigger</div>
       <ol class="mt-3 pl-5">
@@ -523,7 +519,6 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         <li>append-only 记录让恢复过程可审计。</li>
       </ul>
     </div>
-
     <div class="panel p-6">
       <div class="mini-title">Durable worker memory</div>
       <p class="muted mt-2">项目本地知识，应该跨越单次 run 持续存在。</p>
@@ -534,7 +529,6 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         <li><code>note/</code> 保存可复用的 heuristics 和经验。</li>
       </ul>
     </div>
-
     <div class="panel p-6">
       <div class="mini-title">Shared cloud memory</div>
       <p class="muted mt-2"><code>mem9</code> 适合跨机器、跨 agent 的共享持久记忆。</p>
@@ -677,7 +671,6 @@ agenthub actor send --channel-id all --text-file broadcast.md</div>
         <li>Leader review、集成并关闭该 Task。</li>
       </ol>
     </div>
-
     <div class="panel code-card p-5">
       <div class="mini-title mb-3">Worker 预期回传的内容</div>
       <ul class="compact-list">
