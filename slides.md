@@ -909,9 +909,15 @@ routerMode: hash
     <div class="flow-pill">Repo artifacts</div>
     <div class="flow-pill">Next task</div>
   </div>
+</div>
 
-  <div class="panel panel-strong p-6 mt-6">
-    <div class="text-2xl font-semibold leading-tight">
+---
+
+<div class="slide-shell">
+  <div class="aurora"></div>
+  <div class="eyebrow">收尾</div>
+  <div class="max-w-5xl mt-24">
+    <div class="text-5xl font-semibold leading-tight">
       真正重要的不是单个 agent，而是让人类意图、Agent 执行和 CI 反馈形成持续闭环的工程 harness。
     </div>
   </div>
