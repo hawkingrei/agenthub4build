@@ -950,14 +950,6 @@ routerMode: hash
       </p>
     </div>
   </div>
-
-  <div class="panel panel-strong p-5 mt-6">
-    <div class="mini-title">更现实的落点</div>
-    <p class="mt-2">
-      不是一开始就证明整个系统，而是先证明 mailbox、trigger、idempotency、replay 这些核心 contract，
-      把“经验上正确”逐步升级成“machine-checkable correctness”。
-    </p>
-  </div>
 </div>
 
 ---
