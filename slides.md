@@ -959,3 +959,17 @@ routerMode: hash
     </p>
   </div>
 </div>
+
+---
+
+<div class="slide-shell">
+  <div class="aurora"></div>
+  <div class="eyebrow">Q&A</div>
+  <div class="max-w-5xl mt-24">
+    <div class="text-6xl font-semibold leading-tight">Q&A</div>
+    <p class="text-2xl leading-10 mt-8 max-w-4xl">
+      也欢迎继续讨论 Agent team、TiDB skills、memory、Shiro，
+      以及更长期的 formal methods。
+    </p>
+  </div>
+</div>
