@@ -590,7 +590,7 @@ routerMode: hash
       </p>
       <ul class="mt-3 compact-list">
         <li><code>tidb-optimizer-bugfix</code></li>
-        <li><code>tidb-doc-finder</code></li>
+        <li><code>agent-rules</code></li>
         <li><code>tidb-profiler-analyzer</code></li>
         <li><code>context-management</code></li>
       </ul>
@@ -625,9 +625,9 @@ routerMode: hash
           <td>聚焦 planner 的修复，以及可复用的调试笔记</td>
         </tr>
         <tr>
-          <td><code>tidb-doc-finder</code></td>
-          <td>以 repo 里的 <code>llms.txt</code> 作为 source-of-truth doc router</td>
-          <td>带精确来源选择的 doc-grounded answer</td>
+          <td><code>agent-rules</code></td>
+          <td>把 TiDB 研发约束、常见流程和工程规则沉淀成可直接复用的 rules</td>
+          <td>更稳定的任务约束、执行边界和 code review / validation 习惯</td>
         </tr>
         <tr>
           <td><code>tidb-profiler-analyzer</code></td>
