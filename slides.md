@@ -330,7 +330,7 @@ routerMode: hash
         <li>稳定的 surface 意味着更小的 prompt 和更少的隐藏执行路径。</li>
         <li><code>run_id</code> 让 replay 保持 deterministic。</li>
         <li><code>pending_count</code> 提供一个低成本的未处理消息计数。</li>
-        <li>channel event 改善 UX，但 mailbox ack 仍然是完成信号。</li>
+        <li>channel event 提供实时感知，降低轮询成本；执行完成仍以 mailbox ack 为准。</li>
       </ul>
     </div>
   </div>
